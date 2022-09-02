@@ -5,13 +5,14 @@ require_once 'config.php';
 
 if(isset($_POST['submit'])) {
 
-    if(!empty($_POST['firstname'])  && !empty($_POST['surname'])   && !empty($_POST['email'])  && !empty($_POST['phonenumber'])  && !empty($_POST['password'])  && !empty($_POST['confirmpassword'])     ){
+    if(!empty($_POST['firstname'])  && !empty($_POST['lastname'])   && !empty($_POST['email'])  && !empty($_POST['mobilenumber'])  && !empty($_POST['pickuplocation'])  && !empty($_POST['droplocation'])  && !empty($_POST['specialrequest'])      ){
         $fullname = $_POST['firstname'];
-        $surname = $_POST['surname'];
+        $surname = $_POST['lastname'];
         $phonenumber = $_POST['email'];
-        $people = $_POST['phonenumber'];
-        $date = md5($_POST['password']);
-        $text= md5($_POST['confirmpassword']);
+        $people = $_POST['mobilenumber'];
+        $date = ($_POST['pickuplocation']);
+        $text= ($_POST['droplocation']);
+        $request = $_POST['specialrequest'];
         
         
         
@@ -22,7 +23,7 @@ if(isset($_POST['submit'])) {
         //var_dump($fullname,$email,$phonenumber);
 
         //Insert Data to database 
-        $query = "insert into signup(firstname,surname,email,phonenumber,password,confirmpassword) values('$fullname' , '$surname' ,'$phonenumber','$people','$date', '$text')"; 
+        $query = "insert into reservation(firstname,lastname,email,mobilenumber,pickuplocation,droplocation,specialrequest) values('$fullname' , '$surname' ,'$phonenumber','$people','$date', '$text', '$request')"; 
      
        //run query
        $run = mysqli_query($conn, $query) or die('Error: ' . mysqli_error($conn));;
@@ -144,7 +145,7 @@ if(isset($_POST['submit'])) {
                         <a href="contact.html" class="nav-item nav-link active">Contact</a>
                     </div>
                 </div>
-                <a href="registernow.html" class="nav-item nav-link">Register</a>
+                <a href="registernow.php" class="nav-item nav-link">Register</a>
             </div>
                 </div>
             </nav>
@@ -170,7 +171,7 @@ if(isset($_POST['submit'])) {
 
     <!-- Car Booking Start -->
 
-    <form class="" action="reservenow.php" method="post" autocomplete="off">
+    <form class="" action="" method="post" autocomplete="off">
     <div class="container-fluid pb-5">
         <div class="container">
             <div class="row">
@@ -179,48 +180,39 @@ if(isset($_POST['submit'])) {
                     <div class="mb-5">
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" placeholder="First Name" required="required">
+                                <input type="text" class="form-control p-4"  name="firstname"  placeholder="First Name" required="required">
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" placeholder="Last Name" required="required">
+                                <input type="text" class="form-control p-4" name="lastname"  placeholder="Last Name" required="required">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="email" class="form-control p-4" placeholder="Your Email" required="required">
+                                <input type="email" class="form-control p-4" name="email"  placeholder="Your Email" required="required">
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" placeholder="Mobile Number" required="required">
+                                <input type="number" class="form-control p-4"  name="mobilenumber"  placeholder="Mobile Number" required="required">
                             </div>
                         </div>
                     </div>
                     <h2 class="mb-4">Booking Detail</h2>
                     <div class="mb-5">
                         <div class="row">
-                            <div class="col-6 form-group">
-                                <select class="custom-select px-4" style="height: 50px;">
-                                    <option selected>Pickup Location</option>
-                                    <option value="1">kabete</option>
-                                    <option value="2">chiromo</option>
-                                    <option value="3">gichuru</option>
-                                </select>
+                        <div class="col-6 form-group">
+                                <input type="text" class="form-control p-4"  name="pickuplocation"  placeholder="pickuplocation" required="required">
                             </div>
                             <div class="col-6 form-group">
-                                <select class="custom-select px-4" style="height: 50px;">
-                                    <option selected>Drop Location</option>
-                                    <option value="1">buruburu</option>
-                                    <option value="2">Langata</option>
-                                    <option value="3">westlands</option>
-                                </select>
+                                <input type="text" class="form-control p-4"  name="droplocation"  placeholder="droplocation" required="required">
                             </div>
+                           
                         </div>
                        
                       
                         <div class="form-group">
-                            <textarea class="form-control py-3 px-4" rows="3" placeholder="Special Request" required="required"></textarea>
+                            <textarea class="form-control py-3 px-4" rows="3" name="specialrequest"  placeholder="Special Request" required="required"></textarea>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit">book reservation</button>
+                            <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">book reservation</button>
                         </div>
                     </div>
                 </div>
