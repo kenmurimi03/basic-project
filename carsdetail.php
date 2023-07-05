@@ -1,47 +1,43 @@
 <?php
-//take our config file
-
-require_once 'config.php';
 
 if (isset($_POST["submit"])) {
-    
+ include 'config.php';
 
-    //getting our form data
-    $email = mysqli_real_escape_string($conn, $_POST["email"]);
-    $password = mysqli_real_escape_string($conn, md5($_POST["userpassword"]));
-     
-    //checking if user record is present
-    $sql = "SELECT * FROM register WHERE email = '$email' && userpassword= '$password' ";
-    $result = mysqli_query($conn, $sql);
+    $price = mysqli_real_escape_string($conn, $_POST["price"]);
+    $imagee = mysqli_real_escape_string($conn, $_POST["imagee"]);
+    $title = mysqli_real_escape_string($conn, $_POST["model"]);
+    $description = mysqli_real_escape_string($conn, $_POST["descriptions"]);
+  
+  
 
-
-    //check if successfull
- 
-
-    if(mysqli_num_rows($result) > 0) {
-        
-
-        echo "Login Success";
-
-        
-
-    }
-    else{
-    
-        echo "Login Failed";
-
-
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM carsavailable WHERE price='{$price}'")) < 0) {
+        echo "<script>alert('{$price} - the price entered is invalid.');</script>";
     }
     
+    else {
+        if ($price > 0) {
+            $sql = "INSERT INTO carsavailable (price,imagee,model,descriptions) VALUES ('{$price}', '{$imagee}',  '{$title}', '{$description}')";
+            $result = mysqli_query($conn, $sql);
 
+            if ($result) {
+
+                 //echo success then redirect
+                 
+
+                 echo "<script>alert('The car has been successfully updated to the database.');</script>";
+                 
+                 
+
+                //if result is successfull navigate to dashboard page
+               
+
+             }else {
+                echo "<script>Error: ".$sql.mysqli_error($conn)."</script>";
+                
+            }
+        }
+    }
 }
-
-
-
-
-
-
-
 
 ?>
 
@@ -124,7 +120,7 @@ if (isset($_POST["submit"])) {
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link active">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
@@ -154,11 +150,11 @@ if (isset($_POST["submit"])) {
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">log in</h1>
+        <h1 class="display-3 text-uppercase text-white mb-3">Cars</h1>
         <div class="d-inline-flex text-white">
             <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
             <h6 class="text-body m-0 px-3">/</h6>
-            <h6 class="text-uppercase text-body m-0">Contact</h6>
+            <h6 class="text-uppercase text-body m-0">Cars</h6>
         </div>
     </div>
     <!-- Page Header Start -->
@@ -167,25 +163,102 @@ if (isset($_POST["submit"])) {
     <!-- Contact Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <h1 class="display-4 text-uppercase text-center mb-5">log in</h1>
+            <h1 class="display-4 text-uppercase text-center mb-5">input cars</h1>
             <div class="row">
                 <div class="col-lg-7 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form>
+                        <form method="post">
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control p-4" name="email"   placeholder="Your email" required="required">
+                                    <input type="text" class="form-control p-4 "name="price" placeholder="price per day"  required="required">
                                 </div>
                                 <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" name="userpassword" placeholder="password" required="required">
+                                    <input type="file" class="form-control p-4"  name="imagee" placeholder="input the image" required="required">
                                 </div>
                             </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">log in</button>
+                            <div class="form-group">
+                                <input type="text" class="form-control p-4" name="model"  placeholder="car model"  required="required">
                             </div>
+                            <div class="form-group">
+                                <textarea class="form-control py-3 px-4" rows="5" name="descriptions" placeholder="brief description"   required="required"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5 mb-2">
+                    <div class="bg-secondary d-flex flex-column justify-content-center px-5 mb-4" style="height: 435px;">
+                        <div class="d-flex mb-3">
+                            <i class="fa fa-2x fa-map-marker-alt text-primary flex-shrink-0 mr-3"></i>
+                            <div class="mt-n1">
+                                <h5 class="text-light">Head Office</h5>
+                                <p>Kimathi, Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="fa fa-2x fa-map-marker-alt text-primary flex-shrink-0 mr-3"></i>
+                            <div class="mt-n1">
+                                <h5 class="text-light">Branch Office</h5>
+                                <p>kimathi street, Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="fa fa-2x fa-envelope-open text-primary flex-shrink-0 mr-3"></i>
+                            <div class="mt-n1">
+                                <h5 class="text-light">Customer Service</h5>
+                                <p>customer@example.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <i class="fa fa-2x fa-envelope-open text-primary flex-shrink-0 mr-3"></i>
+                            <div class="mt-n1">
+                                <h5 class="text-light">Return & Refund</h5>
+                                <p class="m-0">refund@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
 
 
-                            
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="owl-carousel vendor-carousel">
+                <div class="bg-light p-4">
+                    <img src="img/vendor-1.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-2.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-3.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-4.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-5.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-6.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-7.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-8.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -245,3 +318,23 @@ if (isset($_POST["submit"])) {
         <p class="m-0 text-center text-body">Designed by <a href="https://htmlcodex.com">Kithaka css</a></p>
     </div>
     <!-- Footer End -->
+  
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

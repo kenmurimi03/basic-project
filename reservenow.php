@@ -30,7 +30,10 @@ if(isset($_POST['submit'])) {
 
        //check if our query runs
        if ($run) {
-        echo 'you have signed up successfully';
+
+        echo "<script>alert('your car reservation has been made successfully.');</script>";
+        header('Location: reservationsmade.php');
+
        }
        else {
         echo 'Data not  submitted';
@@ -51,7 +54,7 @@ if(isset($_POST['submit'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>ROYAL CARS - Car Rental HTML Template</title>
+    <title>ROYAL CARS </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -124,7 +127,7 @@ if(isset($_POST['submit'])) {
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
@@ -145,7 +148,7 @@ if(isset($_POST['submit'])) {
                         <a href="contact.html" class="nav-item nav-link active">Contact</a>
                     </div>
                 </div>
-                <a href="registernow.php" class="nav-item nav-link">Register</a>
+                <a href="registernow.php" class="nav-item nav-link">REGISTER</a>
             </div>
                 </div>
             </nav>
@@ -168,58 +171,438 @@ if(isset($_POST['submit'])) {
     </div>
     <!-- Page Header Start -->
 
+    <!-- Detail Start -->
+    <div class="container-fluid pt-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase mb-5">Ford Mustang</h1>
+            <div class="row align-items-center pb-2">
+                <div class="col-lg-6 mb-4">
+                    <img class="img-fluid" src="img/bg-banner.jpg" alt="">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h4 class="mb-2">10000ksh/Day</h4>
+                    <div class="d-flex mb-3">
+                        <h6 class="mr-2">Rating:</h6>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small>(250)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex pt-1">
+                        <h6>Share on:</h6>
+                        <div class="d-inline-flex">
+                            <a class="px-2" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-n3 mt-lg-0 pb-4">
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-car text-primary mr-2"></i>
+                    <span>Model: 2015</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-cogs text-primary mr-2"></i>
+                    <span>Automatic</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-road text-primary mr-2"></i>
+                    <span>20km/liter</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>GPS Navigation</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>Owned by Moses owuor</span>
+                </div>
+                
+               
+            </div>
+        </div>
+    </div>
+    <!-- Detail End -->
+
 
     <!-- Car Booking Start -->
 
     <form class="" action="" method="post" autocomplete="off">
-    <div class="container-fluid pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2 class="mb-4">Personal Detail</h2>
-                    <div class="mb-5">
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  name="firstname"  placeholder="First Name" required="required">
+        <div class="container-fluid pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="mb-4">Personal Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="firstname"  placeholder="First Name" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4" name="lastname"  placeholder="Last Name" required="required">
+                                </div>
                             </div>
-                            <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" name="lastname"  placeholder="Last Name" required="required">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="email" class="form-control p-4" name="email"  placeholder="Your Email" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="number" class="form-control p-4"  name="mobilenumber"  placeholder="Mobile Number" required="required">
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <h2 class="mb-4">Booking Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
                             <div class="col-6 form-group">
-                                <input type="email" class="form-control p-4" name="email"  placeholder="Your Email" required="required">
-                            </div>
-                            <div class="col-6 form-group">
-                                <input type="number" class="form-control p-4"  name="mobilenumber"  placeholder="Mobile Number" required="required">
-                            </div>
-                        </div>
-                    </div>
-                    <h2 class="mb-4">Booking Detail</h2>
-                    <div class="mb-5">
-                        <div class="row">
-                        <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  name="pickuplocation"  placeholder="pickuplocation" required="required">
-                            </div>
-                            <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  name="droplocation"  placeholder="droplocation" required="required">
+                                    <input type="text" class="form-control p-4"  name="pickuplocation"  placeholder="pickuplocation" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="droplocation"  placeholder="droplocation" required="required">
+                                </div>
+                               
                             </div>
                            
-                        </div>
-                       
-                      
+                          
+                            <div class="form-group">
+                                <textarea class="form-control py-3 px-4" rows="3" name="specialrequest"  placeholder="Special Request" required="required"></textarea>
+                            </div>
+                            <div class="col-lg-8">
+                    <div class="bg-secondary p-5 mb-5">
+                        <h2 class="text-primary mb-4">Payment</h2>
                         <div class="form-group">
-                            <textarea class="form-control py-3 px-4" rows="3" name="specialrequest"  placeholder="Special Request" required="required"></textarea>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
                         </div>
-                        <div>
-                            <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">book reservation</button>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
                         </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </form>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">book reservation</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <!-- Car Booking End -->
+        
+    <!-- Car Booking End -->
+
+        <!-- Detail Start -->
+        <div class="container-fluid pt-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase mb-5">Mercedes R3</h1>
+            <div class="row align-items-center pb-2">
+                <div class="col-lg-6 mb-4">
+                    <img class="img-fluid" src="img/car-rent-1.png" alt="">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h4 class="mb-2">12000ksh/Day</h4>
+                    <div class="d-flex mb-3">
+                        <h6 class="mr-2">Rating:</h6>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small>(250)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex pt-1">
+                        <h6>Share on:</h6>
+                        <div class="d-inline-flex">
+                            <a class="px-2" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-n3 mt-lg-0 pb-4">
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-car text-primary mr-2"></i>
+                    <span>Model: 2016</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-cogs text-primary mr-2"></i>
+                    <span>Automatic</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-road text-primary mr-2"></i>
+                    <span>25km/liter</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>GPS Navigation</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>owned by walter Oloo</span>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- Detail End -->
+
+
+    <!-- Car Booking Start -->
+
+    <form class="" action="" method="post" autocomplete="off">
+        <div class="container-fluid pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="mb-4">Personal Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="firstname"  placeholder="First Name" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4" name="lastname"  placeholder="Last Name" required="required">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="email" class="form-control p-4" name="email"  placeholder="Your Email" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="number" class="form-control p-4"  name="mobilenumber"  placeholder="Mobile Number" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="mb-4">Booking Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
+                            <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="pickuplocation"  placeholder="pickuplocation" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="droplocation"  placeholder="droplocation" required="required">
+                                </div>
+                               
+                            </div>
+                           
+                          
+                            <div class="form-group">
+                                <textarea class="form-control py-3 px-4" rows="3" name="specialrequest"  placeholder="Special Request" required="required"></textarea>
+                            </div>
+                            <div class="col-lg-8">
+                    <div class="bg-secondary p-5 mb-5">
+                        <h2 class="text-primary mb-4">Payment</h2>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">book reservation</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <!-- Car Booking End -->
+        
+    <!-- Car Booking End -->
+
+        <!-- Detail Start -->
+        <div class="container-fluid pt-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase mb-5">BMW X5</h1>
+            <div class="row align-items-center pb-2">
+                <div class="col-lg-6 mb-4">
+                    <img class="img-fluid" src="img/car-rent-2.png" alt="">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h4 class="mb-2">8,5000ksh/Day</h4>
+                    <div class="d-flex mb-3">
+                        <h6 class="mr-2">Rating:</h6>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small>(250)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex pt-1">
+                        <h6>Share on:</h6>
+                        <div class="d-inline-flex">
+                            <a class="px-2" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="px-2" href=""><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-n3 mt-lg-0 pb-4">
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-car text-primary mr-2"></i>
+                    <span>Model: 2013</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-cogs text-primary mr-2"></i>
+                    <span>Automatic</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-road text-primary mr-2"></i>
+                    <span>29km/liter</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>GPS Navigation</span>
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <i class="fa fa-eye text-primary mr-2"></i>
+                    <span>owned by kennedy kithaka</span>
+                </div>
+                
+               
+            </div>
+        </div>
+    </div>
+    <!-- Detail End -->
+
+
+    <!-- Car Booking Start -->
+
+    <form class="" action="" method="post" autocomplete="off">
+        <div class="container-fluid pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="mb-4">Personal Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="firstname"  placeholder="First Name" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4" name="lastname"  placeholder="Last Name" required="required">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="email" class="form-control p-4" name="email"  placeholder="Your Email" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="number" class="form-control p-4"  name="mobilenumber"  placeholder="Mobile Number" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="mb-4">Booking Detail</h2>
+                        <div class="mb-5">
+                            <div class="row">
+                            <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="pickuplocation"  placeholder="pickuplocation" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="text" class="form-control p-4"  name="droplocation"  placeholder="droplocation" required="required">
+                                </div>
+                               
+                            </div>
+                           
+                          
+                            <div class="form-group">
+                                <textarea class="form-control py-3 px-4" rows="3" name="specialrequest"  placeholder="Special Request" required="required"></textarea>
+                            </div>
+                            <div class="col-lg-8">
+                    <div class="bg-secondary p-5 mb-5">
+                        <h2 class="text-primary mb-4">Payment</h2>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">book reservation</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <!-- Car Booking End -->
+        
     <!-- Car Booking End -->
 
   

@@ -1,3 +1,50 @@
+<?php
+
+require_once 'config.php';
+if(isset($_POST['submit'])) 
+{
+
+    if(!empty($_POST['name'])    && !empty($_POST['email'])   && !empty($_POST['subject'])  && !empty($_POST['message'])     ){
+        
+        $fullname = $_POST['name'];
+        $phonenumber = $_POST['email'];
+        $date = $_POST['subject'];
+        $text= $_POST['message'];
+        
+        
+        
+
+
+
+
+        //var_dump($fullname,$email,$phonenumber);
+
+        //Insert Data to database 
+        $query = "insert into contacts(name,email,subject,message) values('$fullname' ,'$phonenumber','$date', '$text')"; 
+     
+       //run query
+       $run = mysqli_query($conn, $query) or die('Error: ' . mysqli_error($conn));;
+
+       //check if our query runs
+       if ($run) {
+
+        echo "<script>alert('your message has been sent successfully!.');</script>";
+ 
+       }
+       else {
+        echo 'Data not  submitted';
+       }
+    }
+
+    else {
+        echo 'All fields are required';
+    }
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,8 +123,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cars</a>
@@ -87,17 +134,12 @@
                                 <a href="booking.html" class="dropdown-item">Car Booking</a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="team.html" class="dropdown-item">The Team</a>
-                               
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                        <a href="team.html" class="nav-item nav-link">The Team</a>
+                        <a href="contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="register.php" class="nav-item nav-link">Register</a>
                     </div>
                 </div>
-                <a href="register.php" class="nav-item nav-link">Register</a>
+                
             </div>
                 </div>
             </nav>
@@ -111,7 +153,7 @@
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">Contact</h1>
+        <h1 class="display-3 text-uppercase text-white mb-3">Car users Contact</h1>
         <div class="d-inline-flex text-white">
             <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
             <h6 class="text-body m-0 px-3">/</h6>
@@ -128,23 +170,23 @@
             <div class="row">
                 <div class="col-lg-7 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form>
+                        <form method="post">
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control p-4" placeholder="Your Name" required="required">
+                                    <input type="text" class="form-control p-4 "name="name" placeholder="Your Name"  required="required">
                                 </div>
                                 <div class="col-6 form-group">
-                                    <input type="email" class="form-control p-4" placeholder="Your Email" required="required">
+                                    <input type="email" class="form-control p-4"  name="email" placeholder="Your Email" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control p-4" placeholder="Subject" required="required">
+                                <input type="text" class="form-control p-4" name="subject"  placeholder="Subject"  required="required">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control py-3 px-4" rows="5" placeholder="Message" required="required"></textarea>
+                                <textarea class="form-control py-3 px-4" rows="5" name="message" placeholder="Message"   required="required"></textarea>
                             </div>
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
+                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">Send Message</button>
                             </div>
                         </form>
                     </div>

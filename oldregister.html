@@ -1,49 +1,67 @@
-<?php
-//take our config file
+<p <?php 
 
 require_once 'config.php';
+if(isset($_POST['submit'])) {
 
-if (isset($_POST["submit"])) {
-    
+    if(!empty($_POST['name'])    && !empty($_POST['email'])   && !empty($_POST['password'])  && !empty($_POST['confirmpassword'])     ){
+        
+        $fullname = $_POST['firstname'];
+        $phonenumber = $_POST['email'];
+        $date = md5($_POST['password']);
+        $text= md5($_POST['confirmpassword']);
+        
+        
+        
 
-    //getting our form data
-    $email = mysqli_real_escape_string($conn, $_POST["email"]);
-    $password = mysqli_real_escape_string($conn, md5($_POST["userpassword"]));
+
+
+
+        //var_dump($fullname,$email,$phonenumber);
+
+        //Insert Data to database 
+        $query = "insert into register(name,email,password,confirmpassword) values('$fullname' ,'$phonenumber','$date', '$text')"; 
      
-    //checking if user record is present
-    $sql = "SELECT * FROM register WHERE email = '$email' && userpassword= '$password' ";
-    $result = mysqli_query($conn, $sql);
+       //run query
+       $run = mysqli_query($conn, $query) or die('Error: ' . mysqli_error($conn));;
 
-
-    //check if successfull
- 
-
-    if(mysqli_num_rows($result) > 0) {
-        
-
-        echo "Login Success";
-
-        
-
+       //check if our query runs
+       if ($run) {
+        echo 'you registered successfully';
+       }
+       else {
+        echo 'Data not  submitted';
+       }
     }
-    else{
-    
-        echo "Login Failed";
 
-
+    else {
+        echo 'All fields are required';
     }
-    
 
 }
 
 
 
 
+?> </p>
 
 
 
 
-?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -154,7 +172,7 @@ if (isset($_POST["submit"])) {
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">log in</h1>
+        <h1 class="display-3 text-uppercase text-white mb-3">Register Now</h1>
         <div class="d-inline-flex text-white">
             <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
             <h6 class="text-body m-0 px-3">/</h6>
@@ -165,29 +183,80 @@ if (isset($_POST["submit"])) {
 
 
     <!-- Contact Start -->
+    <form class="" action="" method="post" autocomplete="off">
     <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <h1 class="display-4 text-uppercase text-center mb-5">log in</h1>
+        <div class="container pt-9 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">register now!</h1>
             <div class="row">
                 <div class="col-lg-7 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
                         <form>
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control p-4" name="email"   placeholder="Your email" required="required">
+                                    <input type="text" class="form-control p-4"  name="name" placeholder="Your Name" required="required">
                                 </div>
                                 <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" name="userpassword" placeholder="password" required="required">
+                                    <input type="email" class="form-control p-4"  name="email" placeholder="Your Email" required="required">
                                 </div>
                             </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">log in</button>
+                            <div class="form-group">
+                                <input type="text" class="form-control p-4" name="password" placeholder="password" required="required">
                             </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control p-4" name="confirmpassword"  placeholder="confirm password" required="required">
+                            </div>
+                        
+                           
+                            <div>
+                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">register with us</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    </form>
+    <!-- Contact End -->
 
 
-                            
-    <!-- Footer Start -->
-    <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="owl-carousel vendor-carousel">
+                <div class="bg-light p-4">
+                    <img src="img/vendor-1.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-2.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-3.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-4.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-5.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-6.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-7.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-8.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+
+       <!-- Footer Start -->
+       <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-uppercase text-light mb-4">Get In Touch</h4>
@@ -245,3 +314,24 @@ if (isset($_POST["submit"])) {
         <p class="m-0 text-center text-body">Designed by <a href="https://htmlcodex.com">Kithaka css</a></p>
     </div>
     <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -6,7 +6,7 @@ if(isset($_POST['submit']))
 
     if(!empty($_POST['name'])    && !empty($_POST['email'])   && !empty($_POST['userpassword'])  && !empty($_POST['confirmpassword'])     ){
         
-        $fullname = $_POST['firstname'];
+        $fullname = $_POST['name'];
         $phonenumber = $_POST['email'];
         $date = md5($_POST['userpassword']);
         $text= md5($_POST['confirmpassword']);
@@ -28,12 +28,9 @@ if(isset($_POST['submit']))
        //check if our query runs
        if ($run) {
 
-        header("Location: contact.php");
-        
-        echo "<script>alert('Success account created.');</script>";
-
-        
-        
+        echo "<script>alert('registration has been made successfully.');</script>";
+        header('Location: reservenow.php');
+ 
        }
        else {
         echo 'Data not  submitted';
@@ -128,8 +125,8 @@ if(isset($_POST['submit']))
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cars</a>
@@ -139,15 +136,13 @@ if(isset($_POST['submit']))
                                 <a href="booking.html" class="dropdown-item">Car Booking</a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="team.html" class="dropdown-item">The Team</a>
-                               
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                        <a href="team.html" class="nav-item nav-link">The Team</a>
+                        <a href="contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="register.php" class="nav-item nav-link">Register</a>
                     </div>
+                </div>
+                
+            </div>
                 </div>
             </nav>
         </div>
@@ -160,7 +155,7 @@ if(isset($_POST['submit']))
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">Register success</h1>
+        <h1 class="display-3 text-uppercase text-white mb-3">Register</h1>
         <div class="d-inline-flex text-white">
             <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
             <h6 class="text-body m-0 px-3">/</h6>
@@ -193,10 +188,34 @@ if(isset($_POST['submit']))
                             <div class="form-group">
                                 <input type="text" class="form-control p-4" name="confirmpassword"  placeholder="confirm password" required="required">
                             </div>
+
+                            <div class="bg-secondary p-5 mb-5">
+                            <h6 class="text-uppercase text-body m-0">you're required to pay 5,000 ksh</h6>
+                        <h2 class="text-primary mb-4">Payment</h2>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        
+                    </div>
                         
                            
                             <div>
-                                <button class="btn btn-primary py-3 px-5" name="submit" type="submit">register with us</button>
+                            <button class="btn btn-primary py-3 px-5"  name="submit" type="submit">register</button>
                             </div>
                         </form>
                     </div>

@@ -1,13 +1,14 @@
 <p <?php 
 
 require_once 'config.php';
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit'])) 
+{
 
-    if(!empty($_POST['name'])    && !empty($_POST['email'])   && !empty($_POST['password'])  && !empty($_POST['confirmpassword'])     ){
+    if(!empty($_POST['name'])    && !empty($_POST['email'])   && !empty($_POST['userpassword'])  && !empty($_POST['confirmpassword'])     ){
         
-        $fullname = $_POST['firstname'];
+        $fullname = $_POST['name'];
         $phonenumber = $_POST['email'];
-        $date = md5($_POST['password']);
+        $date = md5($_POST['userpassword']);
         $text= md5($_POST['confirmpassword']);
         
         
@@ -19,14 +20,16 @@ if(isset($_POST['submit'])) {
         //var_dump($fullname,$email,$phonenumber);
 
         //Insert Data to database 
-        $query = "insert into register(name,email,password,confirmpassword) values('$fullname' ,'$phonenumber','$date', '$text')"; 
+        $query = "insert into register(name,email,userpassword,confirmpassword) values('$fullname' ,'$phonenumber','$date', '$text')"; 
      
        //run query
        $run = mysqli_query($conn, $query) or die('Error: ' . mysqli_error($conn));;
 
        //check if our query runs
        if ($run) {
-        echo 'you registered successfully';
+
+        echo "registered successfully";
+ 
        }
        else {
         echo 'Data not  submitted';
@@ -143,7 +146,7 @@ if(isset($_POST['submit'])) {
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cars</a>
@@ -153,15 +156,13 @@ if(isset($_POST['submit'])) {
                                 <a href="booking.html" class="dropdown-item">Car Booking</a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="team.html" class="dropdown-item">The Team</a>
-                               
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                        <a href="team.html" class="nav-item nav-link">The Team</a>
+                        <a href="contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="register.php" class="nav-item nav-link">Register</a>
                     </div>
+                </div>
+                
+            </div>
                 </div>
             </nav>
         </div>
@@ -202,7 +203,7 @@ if(isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control p-4" name="password" placeholder="password" required="required">
+                                <input type="text" class="form-control p-4" name="userpassword" placeholder="password" required="required">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control p-4" name="confirmpassword"  placeholder="confirm password" required="required">
